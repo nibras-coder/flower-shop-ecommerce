@@ -2,23 +2,27 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
+import authRoutes from './routes/authRoutes.js';
+import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 
-// Load environment variables
 dotenv.config();
-
-// Connect to MongoDB
 connectDB();
 
 const app = express();
 
-// Middleware
 app.use(cors());
-app.use(express.json()); // Parses incoming JSON payloads
+app.use(express.json()); 
 
-// Health check route
+// Mount Routes
+app.use('/api/auth', authRoutes);
+
 app.get('/api/status', (req, res) => {
   res.json({ message: 'Flower Shop API is running reliably...' });
 });
+
+// Mount Error Middleware (Must be after routes)
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
