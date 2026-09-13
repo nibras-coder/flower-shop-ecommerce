@@ -25,8 +25,7 @@ flower-shop-ecommerce/
 ├── backend/       # Express server, API routes, models, controllers, and config
 ├── frontend/      # React client, Vite setup, UI components, and styles
 ├── .gitignore     # Root ignore file for node_modules and environment files
-├── README.md      # Project documentation
-└── package.json   # Root package metadata (if present)
+└──  README.md      # Project documentation
 ```
 
 ## Prerequisites
