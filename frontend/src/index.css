@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #166534; /* Deep Forest Green */
+  --color-secondary: #fda4af; /* Soft Rose */
+  --color-accent: #fbbf24; /* Warm Gold */
+  --color-background: #fafaf9; /* Pearl Off-White */
+  --color-surface: #1c1917; /* Deep Charcoal for Dark UI elements */
+}
