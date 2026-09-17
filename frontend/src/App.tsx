@@ -1,4 +1,9 @@
-function App() {
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import DeliveryPortal from './pages/DeliveryPortal/DeliveryPortal';
+
+function Home() {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center font-sans bg-linear-to-br from-background to-secondary/20 relative overflow-hidden">
       
@@ -13,12 +18,30 @@ function App() {
         <p className="text-gray-700 mb-6 font-medium">
           Tailwind v4 is configured with your vibrant theme.
         </p>
-        <button className="bg-primary text-white px-6 py-2 rounded-lg hover:scale-105 transition-transform duration-300 font-medium shadow-md">
-          Start Shopping
-        </button>
+        <div className="flex flex-col gap-3">
+          <Link to="/login" className="bg-primary text-white px-6 py-2 rounded-lg hover:scale-105 transition-transform duration-300 font-medium shadow-md">
+            Login
+          </Link>
+          <Link to="/delivery" className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:scale-105 transition-transform duration-300 font-medium shadow-md">
+            Driver Portal
+          </Link>
+        </div>
       </div>
       
     </div>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/delivery" element={<DeliveryPortal />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
