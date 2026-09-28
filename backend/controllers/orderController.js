@@ -144,13 +144,52 @@ export const updateOrderToDelivered = async (req, res) => {
 
     if (order) {
       order.status = 'Delivered';
-      // Optionally we could record the time or who delivered it
+      order.deliveredAt = Date.now();
+      
+      if (req.body.proofOfDelivery) {
+        order.proofOfDelivery = req.body.proofOfDelivery;
+      }
+
       if (req.user) {
         order.deliveryDriver = req.user._id;
       }
 
       const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    } else {
+      res.status(404);
+      throw new Error('Order not found');
+    }
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
+// @desc    Update order to attempted (by ID or orderNumber)
+// @route   PUT /api/orders/:id/attempt
+// @access  Private/Admin or Delivery Staff
+export const updateOrderToAttempted = async (req, res) => {
+  try {
+    let order = null;
+    if (mongoose.isValidObjectId(req.params.id)) {
+      order = await Order.findById(req.params.id);
+    }
+    if (!order) {
+      order = await Order.findOne({ orderNumber: req.params.id });
+    }
+
+    if (order) {
+      order.status = 'Attempted';
+      
+      if (req.body.failedReason) {
+        order.failedReason = req.body.failedReason;
+      }
+
+      if (req.user) {
+        order.deliveryDriver = req.user._id;
+      }
+
+      const updatedOrder = await order.save();
       res.json(updatedOrder);
     } else {
       res.status(404);

@@ -1,5 +1,5 @@
 import express from 'express';
-import { updateOrderToDelivered, createOrder, getOrderById } from '../controllers/orderController.js';
+import { updateOrderToDelivered, updateOrderToAttempted, createOrder, getOrderById } from '../controllers/orderController.js';
 import { protect, authorize } from '../middlewares/authMiddleware.js';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
@@ -17,8 +17,11 @@ const optionalAuth = async (req, res, next) => {
   }
   next();
 };
+
 const router = express.Router();
 router.post('/', optionalAuth, createOrder);
 router.get('/:id', optionalAuth, getOrderById);
 router.put('/:id/deliver', protect, authorize('Admin', 'Delivery Staff'), updateOrderToDelivered);
+router.put('/:id/attempt', protect, authorize('Admin', 'Delivery Staff'), updateOrderToAttempted);
+
 export default router;
