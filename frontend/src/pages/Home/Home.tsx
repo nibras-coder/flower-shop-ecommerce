@@ -13,7 +13,7 @@ const Home: React.FC = () => {
             </div>
             <div className="flex gap-6 items-center">
               <a href="#collections" className="text-sm font-medium text-slate-700 hover:text-primary transition-colors">Collections</a>
-              <a href="#custom" className="text-sm font-medium text-slate-700 hover:text-primary transition-colors">Custom</a>
+              <Link to="/custom-bouquet" className="text-sm font-bold text-primary hover:text-pink-600 transition-colors">Custom Studio</Link>
               <Link to="/login" className="text-sm font-medium text-slate-700 hover:text-primary transition-colors">Login</Link>
               <Link to="/register" className="text-sm font-bold bg-primary/90 text-white px-5 py-2.5 rounded-full hover:bg-primary shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5">Sign Up</Link>
             </div>
@@ -39,9 +39,14 @@ const Home: React.FC = () => {
                 <p className="mt-4 text-lg text-slate-100 font-medium mb-10 drop-shadow-sm">
                   Discover curated luxury bouquets crafted by master florists. Elevate your space with the freshest, most vibrant blooms delivered directly to your door.
                 </p>
-                <Link to="/collections" className="inline-block bg-primary text-white font-bold px-10 py-4 rounded-full shadow-xl hover:bg-pink-600 transition-all duration-300 hover:shadow-primary/50 text-lg">
-                  Shop the Collection
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link to="/custom-bouquet" className="inline-block bg-primary text-white font-bold px-8 py-4 rounded-full shadow-xl hover:bg-pink-600 transition-all duration-300 hover:shadow-primary/50 text-lg">
+                    ✨ Build Custom Bouquet
+                  </Link>
+                  <a href="#collections" className="inline-block bg-white/80 backdrop-blur-md text-slate-800 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-white transition-all duration-300 text-lg">
+                    Collections
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -104,6 +109,52 @@ const Home: React.FC = () => {
         </div>
       </section>
       
+      {/* Custom Bouquet Studio Feature Section */}
+      <section id="custom" className="py-24 relative overflow-hidden bg-white/40">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="glass-panel rounded-3xl p-8 md:p-14 bg-linear-to-r from-pink-500/10 via-purple-500/10 to-emerald-500/10 border-2 border-white/60 shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-accent/20 text-accent inline-block mb-4">
+                  ✨ Interactive Atelier
+                </span>
+                <h2 className="text-3xl md:text-5xl font-serif font-bold text-slate-800 leading-tight mb-4">
+                  Custom Bouquet Builder & AI Floral Stylist
+                </h2>
+                <p className="text-slate-600 text-base leading-relaxed mb-6">
+                  Design your personalized floral masterpiece stem-by-stem. Choose your focal blooms, receive smart complementary suggestions powered by AI, select artisanal wrapping papers, and track prices in real time.
+                </p>
+                <div className="flex flex-wrap gap-4 items-center">
+                  <Link
+                    to="/custom-bouquet"
+                    className="bg-primary hover:bg-pink-600 text-white font-bold px-8 py-4 rounded-full shadow-xl shadow-primary/30 transition-all hover:-translate-y-0.5"
+                  >
+                    Launch Bouquet Studio →
+                  </Link>
+                  <span className="text-xs text-slate-500 font-medium">
+                    🌸 Real-time pricing • 🤖 AI flower pairing • 🚚 Direct delivery
+                  </span>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/80">
+                  <img
+                    src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop"
+                    alt="Florist arranging bespoke bouquet"
+                    className="w-full h-80 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+                    <p className="text-white font-serif text-lg font-bold">
+                      "Every stem tells an enduring story."
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-slate-900 pt-16 pb-8">
         <div className="container mx-auto px-4 text-center">
