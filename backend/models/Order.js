@@ -31,12 +31,21 @@ const orderSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Pending', 'Processing', 'Out for Delivery', 'Delivered'],
+      enum: ['Pending', 'Processing', 'Out for Delivery', 'Delivered', 'Attempted'],
       default: 'Pending',
     },
     deliveryDriver: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+    },
+    proofOfDelivery: {
+      type: String,
+    },
+    deliveredAt: {
+      type: Date,
+    },
+    failedReason: {
+      type: String,
     },
     deliveryWindow: {
       type: String,
